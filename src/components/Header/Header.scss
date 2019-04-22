@@ -1,0 +1,72 @@
+/* Header */
+.Header {
+    height: 4.5rem;
+    display: flex;
+    padding: .1em 1em;
+    background-color: rgb(146, 213, 231);
+    justify-content: space-between;
+    align-items: center;
+    
+    .Header_logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    /* Image logo */
+    .Image {
+        margin-right: 1em;
+        height: 2em;
+        width: 2em;
+    }
+    .Input {
+        display: flex;
+        align-items: center;
+
+        input[type=text] {
+            width: 90px;
+            border: 2px solid #ccc;
+            border-radius: 20px;
+            font-size: 16px;
+            background-color: white;
+            padding: 3px 20px 3px 40px;
+            outline: none;
+            transition: all .8s ease-in-out;
+
+            &:focus {
+                width: 100%;
+              }
+          }
+    span {
+            margin-right: .3em;
+        }
+    }
+    .Nav {
+        padding-right: .5rem;
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        a {
+            padding-right: 1em;
+            font-weight: 400;
+            font-size: .8em;
+            text-decoration: none;
+            color: black;
+            
+            &:hover {
+                color: #f1f1f1;
+            }
+        }
+        
+    
+    }
+}
+
+
+

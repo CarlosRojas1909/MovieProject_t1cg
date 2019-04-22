@@ -1,0 +1,1 @@
+//setup piece code like a navbar from bootstrap or jquery previously installed with npm

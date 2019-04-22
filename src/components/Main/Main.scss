@@ -1,0 +1,41 @@
+.Main {
+    display: flex;
+    flex-direction: row;
+
+    .Posters {
+        width: 30rem;
+        height: 10rem;
+    }
+   
+    .Main_list {
+        margin: 0 auto;
+
+        .Main_Ulist {
+            height: 100vh;
+            width: 10rem;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: rgb(146, 213, 231);
+            overflow-x: hidden;
+            padding-top: 120px;
+            margin-top: 4.7rem;
+
+            li {
+                padding: .6rem .2rem 1.3rem .8rem;
+                font-size: 1.3rem;
+                display: block;
+                a {
+                    color: black;
+                    text-decoration: none;
+                    &:hover {
+                        color: #f1f1f1;
+                    }
+                }
+            
+            }
+        }
+    }
+    
+}
