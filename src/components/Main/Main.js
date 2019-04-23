@@ -2,29 +2,36 @@ import React, { Component } from 'react';
 import './Main.scss'
 
 class Main extends Component {
+
     state = {
-        displayData: false,
-        data: []
+        data: [],
+        movieType: ""
     }
+
+
+
 
     componentDidMount() {
-        this.apiCall();
-    }
+
+        this.apiCall()
+    };
+
+
+
 
     apiCall = () => {
-        const fetchData = fetch("https://api.themoviedb.org/3/search/movie?api_key=eb74ed2d82713ac14d0b4a9c670fac17&language=en-US&query=princess&page=1&include_adult=false");
+        // const fetchData = fetch("https://api.themoviedb.org/3/search/movie?api_key=eb74ed2d82713ac14d0b4a9c670fac17&language=en-US&query=princess&page=1&include_adult=false");
+        const fetchData = fetch("https://api.themoviedb.org/3/movie/popular?api_key=eb74ed2d82713ac14d0b4a9c670fac17&language=en-US&page=1");
         fetchData.then(response => response.json())
             .then(parsedDta => parsedDta.results)// this is all my data from api
             .then(arrData => this.setState({
-                displayData: true,
                 data: arrData
             }))
             .catch(error => "error: something went wrong!")
     }
 
-
-
     render() {
+
         return (
             <div className='Main'>
                 <div className='Main_list'>
@@ -42,17 +49,17 @@ class Main extends Component {
                     </ul>
                 </div>
                 <div className='Posters'>
-                    <div className='DataFetch'>
-                        {this.state.displayData && this.state.data.map((el, index) => <li key={el + index}><img src={'https://image.tmdb.org/t/p/w200' + el.poster_path} /></li>)}
-                    </div>
+                    {this.state.data.map((el, index) =>
+                        <div className='PosterInfo' key={el + index}>
+                            <img src={'https://image.tmdb.org/t/p/w154' + el.poster_path} />
+                            <p>{el.title}</p>
+                        </div>)}
                 </div>
 
             </div>
-
         )
     }
+
 }
-
-
 
 export default Main;
