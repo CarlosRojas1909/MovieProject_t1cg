@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import './Main.scss'
+import SinglePoster from './SinglePoster/SinglePoster'
 
 class Main extends Component {
 
     state = {
         data: [],
-        movieType: ""
+        showSinglePoster: false,
+        singlePosterObj: {}
     }
 
 
@@ -30,9 +32,21 @@ class Main extends Component {
             .catch(error => "error: something went wrong!")
     }
 
-    render() {
 
+    PosterDetail = (index) => {
+
+        let obj = this.state.data[index]
+        this.setState({
+            showSinglePoster: true,
+            singlePosterObj: obj
+        })
+        console.log(obj)
+    }
+
+
+    render() {
         return (
+
             <div className='Main'>
                 <div className='Main_list'>
                     <ul className='Main_Ulist'>
@@ -49,11 +63,15 @@ class Main extends Component {
                     </ul>
                 </div>
                 <div className='Posters'>
-                    {this.state.data.map((el, index) =>
-                        <div className='PosterInfo' key={el + index}>
-                            <img src={'https://image.tmdb.org/t/p/w154' + el.poster_path} />
-                            <p>{el.title}</p>
-                        </div>)}
+
+                    {this.state.showSinglePoster && <SinglePoster data={this.state.singlePosterObj} /> ||
+                        (this.state.data.map((el, index) =>
+                            <div onClick={() => this.PosterDetail(index)} className='PosterInfo' key={el + index}>
+                                <img src={'https://image.tmdb.org/t/p/w154' + el.poster_path} />
+                                <p>{el.title}</p>
+                            </div>))
+                    }
+
                 </div>
 
             </div>
