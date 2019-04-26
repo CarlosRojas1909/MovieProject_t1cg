@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import './Main.scss'
-import SinglePoster from './SinglePoster/SinglePoster'
+import SinglePoster from './Posters/SinglePoster/SinglePoster'
+import AllPosters from './Posters/AllPosters';
 
 class Main extends Component {
 
     state = {
         data: [],
-        showSinglePoster: false,
-        singlePosterObj: {}
+        singlePosterObj: {},
+        showSinglePoster: false
     }
 
 
@@ -32,22 +33,22 @@ class Main extends Component {
             .catch(error => "error: something went wrong!")
     }
 
-
-    PosterDetail = (index) => {
-
+    //single poster handler
+    singlePosterHandler = (index) => {
+        console.log('object')
         let obj = this.state.data[index]
         this.setState({
-            showSinglePoster: true,
-            singlePosterObj: obj
+            singlePosterObj: obj,
+            showSinglePoster: true
         })
-        console.log(obj)
     }
 
 
     render() {
+
         return (
 
-            <div className='Main'>
+            <main className='Main'>
                 <div className='Main_list'>
                     <ul className='Main_Ulist'>
                         <li><a href="#">Action</a></li>
@@ -62,22 +63,18 @@ class Main extends Component {
                         <li><a href="#">Horror</a></li>
                     </ul>
                 </div>
+
                 <div className='Posters'>
 
-                    {this.state.showSinglePoster && <SinglePoster data={this.state.singlePosterObj} /> ||
-                        (this.state.data.map((el, index) =>
-                            <div onClick={() => this.PosterDetail(index)} className='PosterInfo' key={el + index}>
-                                <img src={'https://image.tmdb.org/t/p/w154' + el.poster_path} />
-                                <p>{el.title}</p>
-                            </div>))
-                    }
+                    {this.state.showSinglePoster && <SinglePoster item={this.state.singlePosterObj} /> || <AllPosters allData={this.state.data} singlePosterHandler={this.singlePosterHandler} />}
 
                 </div>
 
-            </div>
+            </main>
         )
     }
 
 }
 
 export default Main;
+
