@@ -8,30 +8,27 @@ class Main extends Component {
     state = {
         data: [],
         singlePosterObj: {},
-        showSinglePoster: false
+        showSinglePoster: false,
+        loading: false
     }
 
 
 
 
     componentDidMount() {
+        this.setState({
+            loading: true
+        })
 
-        this.apiCall()
-    };
-
-
-
-
-    apiCall = () => {
-        // const fetchData = fetch("https://api.themoviedb.org/3/search/movie?api_key=eb74ed2d82713ac14d0b4a9c670fac17&language=en-US&query=princess&page=1&include_adult=false");
         const fetchData = fetch("https://api.themoviedb.org/3/movie/popular?api_key=eb74ed2d82713ac14d0b4a9c670fac17&language=en-US&page=1");
         fetchData.then(response => response.json())
             .then(parsedDta => parsedDta.results)// this is all my data from api
             .then(arrData => this.setState({
-                data: arrData
+                data: arrData,
+                loading: false
             }))
             .catch(error => "error: something went wrong!")
-    }
+    };
 
     //single poster handler
     singlePosterHandler = (index) => {
@@ -66,7 +63,7 @@ class Main extends Component {
 
                 <div className='Posters'>
 
-                    {this.state.showSinglePoster && <SinglePoster item={this.state.singlePosterObj} /> || <AllPosters allData={this.state.data} singlePosterHandler={this.singlePosterHandler} />}
+                    {this.state.loading ? <h1 className='Loading'>Loading...</h1> : (this.state.showSinglePoster && <SinglePoster item={this.state.singlePosterObj} /> || <AllPosters allData={this.state.data} singlePosterHandler={this.singlePosterHandler} />)}
 
                 </div>
 
