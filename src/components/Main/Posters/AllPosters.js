@@ -1,6 +1,7 @@
 import React from 'react';
 
 const AllPosters = (props) => {
+
     return (
         props.allData.map((item, index) =>
             <div key={item.id} className='PosterInfo'>
