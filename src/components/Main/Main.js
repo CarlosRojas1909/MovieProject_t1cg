@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Main.scss'
-import SinglePoster from './Posters/SinglePoster/SinglePoster'
+import SinglePoster from './Posters/SinglePoster'
 import AllPosters from './Posters/AllPosters';
 
 class Main extends Component {
